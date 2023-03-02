@@ -22,6 +22,12 @@ def get_disk_usage():
 
     return total, used, free
 
+def get_ip():
+    # get ip address
+    ip = os.popen('hostname -I').read()
+    ip = ip.strip()
+    return ip
+
 try:
     # init display
     epd_disp = epd2in9bc.EPD()
@@ -48,6 +54,10 @@ try:
     draw.text((128, 0), total_disk, font=top_font, fill=0, align='left')
     draw.text((128, 32), used_disk, font=top_font, fill=0, align='left')
     draw.text((128, 64), free_disk, font=top_font, fill=0, align='left')
+
+    # draw ip address
+    ip = get_ip()
+    draw.text((128, 96), ip, font=top_font, fill=0, align='left')
 
     # draw qr code png
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
