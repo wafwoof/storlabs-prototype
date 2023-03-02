@@ -1,7 +1,11 @@
 import shutil
 
 total, used, free = shutil.disk_usage("/")
+# convert all to GB
+total = total // (2**30)
+used = used // (2**30)
+free = free // (2**30)
 
-# convert to percentage
-usage_percentage = int(used/total * 1000)
-print(f"Usage: {used}/{total} ({usage_percentage}%)")
+print(f"Total: {total} GB")
+print(f"Used: {used} GB")
+print(f"Free: {free} GB")

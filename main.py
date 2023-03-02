@@ -3,8 +3,19 @@
 import os
 from waveshare_epd import epd2in9bc
 from PIL import Image, ImageDraw, ImageFont
+import shutil
 
 pic_dir = 'pic'
+
+def get_disk_usage():
+    # get disk usage
+    total, used, free = shutil.disk_usage("/")
+    # convert all to GB
+    total = total // (2**30)
+    used = used // (2**30)
+    free = free // (2**30)
+
+    return total, used, free
 
 try:
     # init display
@@ -28,7 +39,10 @@ try:
     draw = ImageDraw.Draw(bw_image_buffer) # method to draw on image buffer
 
     # position and draw text
-    draw.text((128, 0), 'Storlabs!', font=top_font, fill=0, align='left')
+    total_disk, used_disk, free_disk = get_disk_usage()
+    draw.text((128, 0), total_disk, font=top_font, fill=0, align='center')
+    draw.text((128, 0), used_disk, font=top_font, fill=0, align='center')
+    draw.text((128, 0), free_disk, font=top_font, fill=0, align='center')
 
     # draw qr code png
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
