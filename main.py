@@ -40,9 +40,9 @@ try:
 
     # position and draw text
     total_disk, used_disk, free_disk = get_disk_usage()
-    draw.text((128, 0), total_disk, font=top_font, fill=0, align='center')
-    draw.text((128, 0), used_disk, font=top_font, fill=0, align='center')
-    draw.text((128, 0), free_disk, font=top_font, fill=0, align='center')
+    draw.text((128, 0), total_disk, font=top_font, fill=0, align='left')
+    draw.text((128, 32), used_disk, font=top_font, fill=0, align='left')
+    draw.text((128, 64), free_disk, font=top_font, fill=0, align='left')
 
     # draw qr code png
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
