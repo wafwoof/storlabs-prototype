@@ -15,6 +15,11 @@ def get_disk_usage():
     used = used // (2**30)
     free = free // (2**30)
 
+    # format strings
+    total = f"Total: {total} GB"
+    used = f"Used: {used} GB"
+    free = f"Free: {free} GB"
+
     return total, used, free
 
 try:
