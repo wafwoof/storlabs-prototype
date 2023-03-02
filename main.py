@@ -30,6 +30,10 @@ try:
     # position and draw text
     draw.text((15, 0), 'Storlabs!', font=top_font, fill=0, align='left')
 
+    # draw qr code png
+    qr = Image.open(os.path.join(pic_dir, 'qr.png'))
+    bw_image_buffer.paste(qr, (0, 50))
+
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), epd_disp.getbuffer(red_image_buffer)) # todo: display only black image
     #todo: experiment with partial updates and grayscale
