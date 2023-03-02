@@ -42,7 +42,7 @@ try:
     print("Width:", w, "Height:", h)
 
     # define fonts
-    top_font = ImageFont.truetype(os.path.join(pic_dir, 'ComicMono.ttf'), 16)
+    top_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 18)
 
     # define and draw background
     bw_image_buffer = Image.new(mode='1', size=(w, h), color=255) # b/w image buffer
