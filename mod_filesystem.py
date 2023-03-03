@@ -40,7 +40,8 @@ def block_status(percentage):
     
 
 if __name__ == "__main__":
+    import sys
     total, used, free = get_total_disk_usage()
     print(f"Total: {total}GB Used: {used}GB Free: {free}GB")
     print(f"Block Status: {block_status(used)}")
-    print(get_format_usage("jpeg"))
+    print(f"format:", sys.argv[1], get_format_usage(str(sys.argv[1])))
