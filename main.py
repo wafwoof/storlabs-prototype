@@ -3,6 +3,7 @@
 import os
 from waveshare_epd import epd2in9bc
 from PIL import Image, ImageDraw, ImageFont
+import time
 from mod_qrcode import *
 from mod_ip import *
 from mod_filesystem import *
@@ -48,7 +49,7 @@ try:
     # set w/h
     w = epd_disp.height
     h = epd_disp.width
-    print("Width:", w, "Height:", h)
+    print("Width:", w, "Height:", h, end=' ')
 
     # define fonts
     top_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 20)
@@ -67,7 +68,9 @@ finally:
     
 
 screen1()
- 
+
+time.sleep(5)
+print("Updating Screen 1")
 # make a partial update
 draw.rectangle((128, 0, 256, 32), fill=255)
 draw.text((128, 0), f"▓ .mp3 / 1GB", font=top_font, fill=0, align='left')
