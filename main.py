@@ -9,6 +9,29 @@ from mod_filesystem import *
 
 pic_dir = 'pic'
 
+def screen1():
+    print("Drawing Screen 1")
+    # draw disk usage (right side of display)
+    total_disk, used_disk, free_disk = get_total_disk_usage()
+    draw.text((128, 0), f"▓ .mp3 / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 32), f"▓ .wav / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 64), f"▓ .jpeg / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 96), f"▒ Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
+
+    # create and draw qr code (left side of display)
+    # grab ip address
+    ip = get_ip()
+    create_qr(ip)
+    qr = Image.open(os.path.join(pic_dir, 'qr.png'))
+    bw_image_buffer.paste(qr, (16, 0))
+    draw.text((16, 96), ip, font=info_font, fill=0, align='left')
+    draw.text((16, 112), "Storlabs ©2023", font=info_font, fill=0, align='left')
+
+    # write buffer to display
+    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
+
+    os.remove(os.path.join(pic_dir, 'qr.png'))
+
 
 print("\n")
 print("Project Storlabs Demonstration Software v0.0.1")
@@ -36,29 +59,9 @@ try:
     red_image_buffer = Image.new(mode='1', size=(w, h), color=255) # red image buffer
     draw = ImageDraw.Draw(bw_image_buffer) # method to draw on image buffer
 
-    # draw disk usage
-    total_disk, used_disk, free_disk = get_total_disk_usage()
-    draw.text((128, 0), f"▓ .mp3 / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 32), f"▓ .wav / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 64), f"▓ .jpeg / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 96), f"▒ Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
-
-    # grab ip address
-    ip = get_ip()
-    print("IP:", ip)
-    # create and draw qr code (left side of display)
-    create_qr(ip)
-    qr = Image.open(os.path.join(pic_dir, 'qr.png'))
-    bw_image_buffer.paste(qr, (16, 0))
-    draw.text((16, 96), ip, font=info_font, fill=0, align='left')
-    draw.text((16, 112), "Storlabs ©2023", font=info_font, fill=0, align='left')
-
-
-    # write buffer to display
-    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None) # todo: display only black image
-
+    screen1()
+ 
     # make a partial update
-    # draw white rectangle over the mp3 text
     draw.rectangle((128, 0, 256, 32), fill=255)
     draw.text((128, 0), f"▓ .mp3 / 1GB", font=top_font, fill=0, align='left')
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
@@ -69,6 +72,6 @@ except IOError as error:
 finally:
     print("program complete")
     # delete the qr code
-    os.remove(os.path.join(pic_dir, 'qr.png'))
+    
 
 
