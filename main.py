@@ -71,7 +71,7 @@ try:
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
     bw_image_buffer.paste(qr, (16, 0))
     draw.text((16, 96), ip, font=info_font, fill=0, align='left')
-    draw.text((16, 112), "Scan to connect!", font=info_font, fill=0, align='left')
+    draw.text((16, 112), "Scan & connect", font=info_font, fill=0, align='left')
 
 
     # write buffer to display
