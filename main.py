@@ -13,13 +13,6 @@ pic_dir = 'pic'
 print("\n")
 print("Project Storlabs Demonstration Software v0.0.1")
 
-try:
-    # git pull
-    print("Updating...")
-    os.system("git pull")
-except:
-    print("Failed to update.")
-
 print("Initializing...")
 try:
     # init display
@@ -63,7 +56,11 @@ try:
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), epd_disp.getbuffer(red_image_buffer)) # todo: display only black image
-    #todo: experiment with partial updates and grayscale
+
+
+    # make a partial update
+    draw.text((128, 0), f"▓ .mp3 / 1GB", font=top_font, fill=0, align='left')
+    epd_disp.displayPartial(epd_disp.getbuffer(bw_image_buffer))
 
 except IOError as error:
     print(error)
