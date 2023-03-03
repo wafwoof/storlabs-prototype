@@ -49,7 +49,8 @@ try:
     print("Width:", w, "Height:", h)
 
     # define fonts
-    top_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 18)
+    top_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 20)
+    info_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 12)
 
     # define and draw background
     bw_image_buffer = Image.new(mode='1', size=(w, h), color=255) # b/w image buffer
@@ -68,9 +69,9 @@ try:
     # create and draw qr code (left side of display)
     create_qr(ip)
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
-    bw_image_buffer.paste(qr, (0, 0))
+    bw_image_buffer.paste(qr, (32, 0))
     #draw.text((8, 0), "Storlabs ©", font=top_font, fill=0, align='left')
-    draw.text((130, 96), ip, font=top_font, fill=0, align='left')
+    draw.text((0, 96), ip, font=top_font, fill=0, align='left')
 
 
     # write buffer to display
