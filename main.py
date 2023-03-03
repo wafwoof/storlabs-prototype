@@ -31,6 +31,9 @@ def get_ip():
     ip = ip.split(' ')[0]
     return ip
 
+print("Project Storlabs Demonstration Software v0.0.1")
+print("Initializing...")
+
 try:
     # init display
     epd_disp = epd2in9bc.EPD()
