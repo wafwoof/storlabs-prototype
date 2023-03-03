@@ -50,7 +50,7 @@ try:
 
     # define fonts
     top_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 20)
-    info_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 12)
+    info_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 14)
 
     # define and draw background
     bw_image_buffer = Image.new(mode='1', size=(w, h), color=255) # b/w image buffer
