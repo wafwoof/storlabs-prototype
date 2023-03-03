@@ -81,11 +81,13 @@ except IOError as error:
 finally:
     print("done")
     
+if __name__ == "__main__":
+    screen1()
+    # make entire screen buffer white
+    draw.rectangle((0, 0, w, h), fill=255)
+    screen2()
 
-screen1()
-# make entire screen buffer white
-bw_image_buffer = Image.new(mode='1', size=(w, h), color=255)
-screen2()
+
 
 # make a partial update
 #draw.rectangle((128, 0, 256, 32), fill=255)
