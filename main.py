@@ -4,6 +4,7 @@ import os
 from waveshare_epd import epd2in9bc
 from PIL import Image, ImageDraw, ImageFont
 import shutil
+from create_qr import create_qr
 
 pic_dir = 'pic'
 
@@ -26,6 +27,8 @@ def get_ip():
     # get ip address
     ip = os.popen('hostname -I').read()
     ip = ip.strip()
+    # remove everything after the first space
+    ip = ip.split(' ')[0]
     return ip
 
 try:
@@ -59,7 +62,8 @@ try:
     ip = get_ip()
     draw.text((128, 96), ip, font=top_font, fill=0, align='left')
 
-    # draw qr code png
+    # create and draw qr code
+    create_qr(ip)
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
     bw_image_buffer.paste(qr, (0, 0))
 
