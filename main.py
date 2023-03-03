@@ -59,7 +59,7 @@ try:
 
     # make a partial update
     # draw white rectangle over the mp3 text
-    draw.rectangle((128, 0, 128+128, 0+32), fill=255)
+    draw.rectangle((128, 0, 256, 32), fill=255)
     draw.text((128, 0), f"▓ .mp3 / 1GB", font=top_font, fill=0, align='left')
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
 
