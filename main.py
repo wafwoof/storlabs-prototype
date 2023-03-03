@@ -31,6 +31,7 @@ def get_ip():
     ip = ip.split(' ')[0]
     return ip
 
+print("\n")
 print("Project Storlabs Demonstration Software v0.0.1")
 print("Initializing...")
 
@@ -68,8 +69,9 @@ try:
     create_qr(ip)
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
     bw_image_buffer.paste(qr, (16, 16))
-    draw.text((8, 0), "Storlabs ©", font=top_font, fill=0, align='left')
-    draw.text((8, 116), ip, font=top_font, fill=0, align='left')
+    #draw.text((8, 0), "Storlabs ©", font=top_font, fill=0, align='left')
+    #draw.text((8, 116), ip, font=top_font, fill=0, align='left')
+
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), epd_disp.getbuffer(red_image_buffer)) # todo: display only black image

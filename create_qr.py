@@ -10,7 +10,7 @@ def create_qr(url):
     # subtract 40 pixels from each side
     area = (40, 40, w-40, h-40)
     img = img.crop(area)
-    img = img.resize((112, 112), resample=Image.LANCZOS)
+    img = img.resize((128, 128), resample=Image.LANCZOS)
 
     with open('pic/qr.png', 'wb') as qr:
         img.save(qr)
