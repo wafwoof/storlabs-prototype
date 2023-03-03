@@ -45,7 +45,7 @@ try:
 
     # draw disk usage
     total_disk, used_disk, free_disk = get_total_disk_usage()
-    draw.text((128, 0), f"2 .mp3 / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 0), f"▓ .mp3 / 0GB", font=top_font, fill=0, align='left')
     draw.text((128, 32), f"▓ .wav / 0GB", font=top_font, fill=0, align='left')
     draw.text((128, 64), f"▓ .jpeg / 0GB", font=top_font, fill=0, align='left')
     draw.text((128, 96), f"▒ Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
