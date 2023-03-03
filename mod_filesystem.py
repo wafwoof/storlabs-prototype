@@ -18,15 +18,13 @@ def get_total_disk_usage():
     return total, used, free
 #▓ .wav / 0GB
 def get_format_usage(format):
-    format = "jpeg"
     os.chdir("/")
     total_size = 0
-    for file in glob.glob(f"*.{format}"):
+    # search for files with format
+    for file in glob.glob(f"**/*.{format}", recursive=True):
         total_size += os.path.getsize(file)
-
     
-
-    return 
+    return f"{format} :", total_size // (2**30), "GB"
 
 def block_status(percentage):
     if percentage >= 75:
@@ -44,4 +42,4 @@ if __name__ == "__main__":
     total, used, free = get_total_disk_usage()
     print(f"Total: {total}GB Used: {used}GB Free: {free}GB")
     print(f"Block Status: {block_status(used)}")
-    print(f"format:", sys.argv[1], get_format_usage(str(sys.argv[1])))
+    print(get_format_usage(sys.argv[1]))
