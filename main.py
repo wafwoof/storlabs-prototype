@@ -68,8 +68,8 @@ try:
     create_qr(ip)
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
     bw_image_buffer.paste(qr, (0, 0))
-    draw.text((5, 0), "Storlabs v0.0.1", font=top_font, fill=0, align='left')
-    draw.text((5, 96), ip, font=top_font, fill=0, align='left')
+    draw.text((5, 0), "Storlabs ©", font=top_font, fill=0, align='left')
+    draw.text((5, 104), ip, font=top_font, fill=0, align='left')
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), epd_disp.getbuffer(red_image_buffer)) # todo: display only black image
