@@ -30,9 +30,24 @@ def screen1():
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
-
+    # clean up qr code file
     os.remove(os.path.join(pic_dir, 'qr.png'))
 
+def screen2():
+    print("Drawing Screen 2")
+    # draw disk usage (left side of display)
+    total_disk, used_disk, free_disk = get_total_disk_usage()
+    draw.text((0, 0), f"▓ .mp3 / 0GB", font=top_font, fill=0, align='left')
+    draw.text((0, 32), f"▓ .wav / 0GB", font=top_font, fill=0, align='left')
+    draw.text((0, 64), f"▓ .jpeg / 0GB", font=top_font, fill=0, align='left')
+    draw.text((0, 96), f"▒ Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
+    # draw disk usage (right side of display)
+    draw.text((128, 0), f"▓ .r3d / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 32), f"▓ .cr3 / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 64), f"▓ .flp / 0GB", font=top_font, fill=0, align='left')
+
+    # write buffer to display
+    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
 
 print("\n")
 print("Project Storlabs Demonstration Software v0.0.1")
@@ -68,10 +83,11 @@ finally:
     
 
 screen1()
+# make entire screen buffer white
+bw_image_buffer = Image.new(mode='1', size=(w, h), color=255)
+screen2()
 
-time.sleep(5)
-print("Updating Screen 1")
 # make a partial update
-draw.rectangle((128, 0, 256, 32), fill=255)
-draw.text((128, 0), f"▓ .mp3 / 1GB", font=top_font, fill=0, align='left')
-epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
+#draw.rectangle((128, 0, 256, 32), fill=255)
+#draw.text((128, 0), f"▓ .mp3 / 1GB", font=top_font, fill=0, align='left')
+#epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
