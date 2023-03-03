@@ -60,7 +60,7 @@ try:
 
     # make a partial update
     draw.text((128, 0), f"▓ .mp3 / 1GB", font=top_font, fill=0, align='left')
-    epd_disp.display(epd_disp.getbuffer(bw_image_buffer))
+    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
 
 except IOError as error:
     print(error)
