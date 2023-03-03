@@ -3,27 +3,12 @@
 import os
 from waveshare_epd import epd2in9bc
 from PIL import Image, ImageDraw, ImageFont
-import shutil
-from create_qr import create_qr
+from mod_qrcode import *
+from mod_ip import *
+from mod_filesystem import *
 
 pic_dir = 'pic'
 
-def get_disk_usage():
-    # get disk usage
-    total, used, free = shutil.disk_usage("/")
-    # convert all to GB
-    total = total // (2**30)
-    used = used // (2**30)
-    free = free // (2**30)
-    return total, used, free
-
-def get_ip():
-    # get ip address
-    ip = os.popen('hostname -I').read()
-    ip = ip.strip()
-    # remove everything after the first space
-    ip = ip.split(' ')[0]
-    return ip
 
 print("\n")
 print("Project Storlabs Demonstration Software v0.0.1")
@@ -52,11 +37,11 @@ try:
     draw = ImageDraw.Draw(bw_image_buffer) # method to draw on image buffer
 
     # draw disk usage
-    total_disk, used_disk, free_disk = get_disk_usage()
-    draw.text((128, 0), "▓ .mp3 / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 32), "▓ .wav / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 64), "▓ .jpeg / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 96), f"░ Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
+    total_disk, used_disk, free_disk = get_total_disk_usage()
+    draw.text((128, 0), f"2 .mp3 / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 32), f"▓ .wav / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 64), f"▓ .jpeg / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 96), f"▒ Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
 
     # grab ip address
     ip = get_ip()
@@ -77,9 +62,8 @@ except IOError as error:
     print(error)
 
 finally:
-    print("End of program")
+    print("program complete")
     # delete the qr code
     os.remove(os.path.join(pic_dir, 'qr.png'))
-
 
 
