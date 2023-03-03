@@ -71,7 +71,7 @@ try:
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
     bw_image_buffer.paste(qr, (16, 0))
     #draw.text((8, 0), "Storlabs ©", font=top_font, fill=0, align='left')
-    draw.text((0, 96), ip, font=info_font, fill=0, align='left')
+    draw.text((16, 96), ip, font=info_font, fill=0, align='left')
 
 
     # write buffer to display
