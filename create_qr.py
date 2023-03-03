@@ -5,10 +5,18 @@ from PIL import Image
 def create_qr(url):
     # create qr code
     img = qrcode.make(f"ssh://{url}", image_factory=qrcode.image.pil.PilImage)
-    # scale the image to have a maximum size of 128x128 pixels
+    # get w/h of image
+    w, h = img.size
+    # subtract 40 pixels from each side
+    area = (40, 40, w-40, h-40)
+    img = img.crop(area)
     img = img.resize((128, 128), resample=Image.LANCZOS)
-    # remove the white border
-    img = img.crop((4, 4, 124, 124))
 
     with open('pic/qr.png', 'wb') as qr:
         img.save(qr)
+
+# for testing
+if __name__ == "__main__":
+    create_qr("https://www.google.com")
+    img = Image.open('pic/qr.png')
+    img.show()
