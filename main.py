@@ -56,7 +56,7 @@ try:
     draw.text((128, 0), "█ .mp3 / 0GB", font=top_font, fill=0, align='left')
     draw.text((128, 32), "█ .wav / 0GB", font=top_font, fill=0, align='left')
     draw.text((128, 64), "█ .jpeg / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 96), f"Used {used_disk}/{free_disk}", font=info_font, fill=0, align='left')
+    draw.text((128, 96), f"Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
 
     # grab ip address
     ip = get_ip()
