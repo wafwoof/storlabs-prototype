@@ -58,9 +58,9 @@ try:
 
     # draw disk usage
     total_disk, used_disk, free_disk = get_disk_usage()
-    draw.text((128, 0), total_disk, font=top_font, fill=0, align='left')
-    draw.text((128, 32), used_disk, font=top_font, fill=0, align='left')
-    draw.text((128, 64), free_disk, font=top_font, fill=0, align='left')
+    draw.text((130, 0), total_disk, font=top_font, fill=0, align='left')
+    draw.text((130, 32), used_disk, font=top_font, fill=0, align='left')
+    draw.text((130, 64), free_disk, font=top_font, fill=0, align='left')
 
     # grab ip address
     ip = get_ip()
@@ -70,7 +70,7 @@ try:
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
     bw_image_buffer.paste(qr, (0, 0))
     #draw.text((8, 0), "Storlabs ©", font=top_font, fill=0, align='left')
-    draw.text((128, 96), ip, font=top_font, fill=0, align='left')
+    draw.text((130, 96), ip, font=top_font, fill=0, align='left')
 
 
     # write buffer to display
