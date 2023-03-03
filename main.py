@@ -55,17 +55,17 @@ try:
     red_image_buffer = Image.new(mode='1', size=(w, h), color=255) # red image buffer
     draw = ImageDraw.Draw(bw_image_buffer) # method to draw on image buffer
 
-    # position and draw text
+    # draw disk usage
     total_disk, used_disk, free_disk = get_disk_usage()
     draw.text((128, 0), total_disk, font=top_font, fill=0, align='left')
     draw.text((128, 32), used_disk, font=top_font, fill=0, align='left')
     draw.text((128, 64), free_disk, font=top_font, fill=0, align='left')
 
-    # draw ip address
+    # grab ip address
     ip = get_ip()
-    draw.text((128, 96), ip, font=top_font, fill=0, align='left')
-
-    # create and draw qr code
+    # create and draw qr code (left side of display)
+    draw.text((5, 0), "Storlabs v0.0.1", font=top_font, fill=0, align='left')
+    draw.text((5, 96), ip, font=top_font, fill=0, align='left')
     create_qr(ip)
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
     bw_image_buffer.paste(qr, (0, 0))
@@ -76,6 +76,9 @@ try:
 
 except IOError as error:
     print(error)
+
+finally:
+    print("End of program")
 
 
 
