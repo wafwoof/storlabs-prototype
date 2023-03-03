@@ -68,7 +68,7 @@ try:
     # create and draw qr code (left side of display)
     create_qr(ip)
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
-    bw_image_buffer.paste(qr, (16, 16))
+    bw_image_buffer.paste(qr, (0, 0))
     #draw.text((8, 0), "Storlabs ©", font=top_font, fill=0, align='left')
     #draw.text((8, 116), ip, font=top_font, fill=0, align='left')
 
