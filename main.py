@@ -36,7 +36,7 @@ def screen1():
 print("\n")
 print("Project Storlabs Demonstration Software v0.0.1")
 
-print("Initializing...")
+print("Initializing...", end=' ')
 try:
     # init display
     epd_disp = epd2in9bc.EPD()
@@ -59,19 +59,16 @@ try:
     red_image_buffer = Image.new(mode='1', size=(w, h), color=255) # red image buffer
     draw = ImageDraw.Draw(bw_image_buffer) # method to draw on image buffer
 
-    screen1()
- 
-    # make a partial update
-    draw.rectangle((128, 0, 256, 32), fill=255)
-    draw.text((128, 0), f"▓ .mp3 / 1GB", font=top_font, fill=0, align='left')
-    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
-
 except IOError as error:
     print(error)
 
 finally:
-    print("program complete")
-    # delete the qr code
+    print("done")
     
 
-
+screen1()
+ 
+# make a partial update
+draw.rectangle((128, 0, 256, 32), fill=255)
+draw.text((128, 0), f"▓ .mp3 / 1GB", font=top_font, fill=0, align='left')
+epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
