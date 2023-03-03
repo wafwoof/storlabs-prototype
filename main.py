@@ -15,12 +15,6 @@ def get_disk_usage():
     total = total // (2**30)
     used = used // (2**30)
     free = free // (2**30)
-
-    # format strings
-    total = f"Total: {total} GB"
-    used = f"Used: {used} GB"
-    free = f"Free: {free} GB"
-
     return total, used, free
 
 def get_ip():
@@ -59,9 +53,10 @@ try:
 
     # draw disk usage
     total_disk, used_disk, free_disk = get_disk_usage()
-    draw.text((130, 0), total_disk, font=top_font, fill=0, align='left')
-    draw.text((130, 32), used_disk, font=top_font, fill=0, align='left')
-    draw.text((130, 64), free_disk, font=top_font, fill=0, align='left')
+    draw.text((128, 0), "█ .mp3 / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 32), "█ .wav / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 64), "█ .jpeg / 0GB", font=top_font, fill=0, align='left')
+    draw.text((128, 96), f"Used {used_disk}/{free_disk}", font=info_font, fill=0, align='left')
 
     # grab ip address
     ip = get_ip()
