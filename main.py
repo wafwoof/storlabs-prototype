@@ -80,6 +80,8 @@ except IOError as error:
 
 finally:
     print("End of program")
+    # delete the qr code
+    os.remove(os.path.join(pic_dir, 'qr.png'))
 
 
 
