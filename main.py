@@ -14,10 +14,10 @@ def screen1():
     print("Drawing Screen 1")
     # draw disk usage (right side of display)
     total_disk, used_disk, free_disk = get_total_disk_usage()
-    draw.text((128, 0), f"▓ .mp3 / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 32), f"▓ .wav / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 64), f"▓ .jpeg / 0GB", font=top_font, fill=0, align='left')
-    draw.text((128, 96), f"▒ Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
+    draw.text((135, 0), f"▓ .mp3 / 0GB", font=top_font, fill=0, align='left')
+    draw.text((135, 32), f"▓ .wav / 0GB", font=top_font, fill=0, align='left')
+    draw.text((135, 64), f"▓ .jpeg / 0GB", font=top_font, fill=0, align='left')
+    draw.text((135, 96), f"▒ Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
 
     # create and draw qr code (left side of display)
     # grab ip address
@@ -82,10 +82,13 @@ finally:
     print("done")
     
 if __name__ == "__main__":
-    screen1()
-    # make entire screen buffer white
-    draw.rectangle((0, 0, w, h), fill=255)
-    screen2()
+    while True:
+        screen1()
+        time.sleep(5)
+        draw.rectangle((0, 0, w, h), fill=255)
+        screen2()
+        time.sleep(5)
+        draw.rectangle((0, 0, w, h), fill=255)
 
 
 
