@@ -12,8 +12,15 @@ pic_dir = 'pic'
 
 print("\n")
 print("Project Storlabs Demonstration Software v0.0.1")
-print("Initializing...")
 
+try:
+    # git pull
+    print("Updating...")
+    os.system("git pull")
+except:
+    print("Failed to update.")
+
+print("Initializing...")
 try:
     # init display
     epd_disp = epd2in9bc.EPD()

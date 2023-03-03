@@ -17,11 +17,11 @@ def get_total_disk_usage():
     free = free // (2**30)
     return total, used, free
 #▓ .wav / 0GB
-def get_format_usage(format):
+def get_format_usage(directory, format):
     os.chdir("/")
     total_size = 0
     # search for files with format
-    for file in glob.glob(f"**/*.{format}", recursive=True):
+    for file in glob.glob(f"{directory}/*.{format}"):
         total_size += os.path.getsize(file)
     
     return f"{format} :", total_size // (2**30), "GB"
@@ -42,4 +42,4 @@ if __name__ == "__main__":
     total, used, free = get_total_disk_usage()
     print(f"Total: {total}GB Used: {used}GB Free: {free}GB")
     print(f"Block Status: {block_status(used)}")
-    print(get_format_usage(sys.argv[1]))
+    print(get_format_usage(sys.argv[2], sys.argv[1]))
