@@ -36,6 +36,7 @@ def screen1():
 def screen2():
     print("Drawing Screen 2")
 
+    total_disk, used_disk, free_disk = get_total_disk_usage()
     block_status = block_status_bar(total_disk, used_disk)
 
     # draw disk usage (left side of display)
