@@ -1,6 +1,6 @@
 # Filesystem module for main.py
 import shutil
-import os, glob
+import os
 
 block0 = "█"
 block1 = "▓"
@@ -17,29 +17,33 @@ def get_total_disk_usage():
     free = free // (2**30)
     return total, used, free
 #▓ .wav / 0GB
+
 def get_format_usage(directory, format):
     os.chdir("/")
-    total_size = 0
-    # search for files with format
-    for file in glob.glob(f"{directory}/*.{format}"):
-        total_size += os.path.getsize(file)
-    
-    return f"{format} :", total_size // (2**30), "GB"
+    # list dir
+    os.system("ls")
 
-def block_status(percentage):
-    if percentage >= 75:
-        return block0
-    elif percentage >= 50:
-        return block1
-    elif percentage >= 25:
-        return block2
-    else:
-        return block3
+def block_status_bar(total, used):
+    status_bar = ""
+
+    # calculate usage percentage out of 100
+    usage = int(used / total * 100)
+    print("usage:", usage, "%")
+    # for each 10% of usage, add a block
+    while len(status_bar) < usage * 0.2:
+        status_bar += block0
+
+    while len(status_bar) < 20:
+        status_bar += block3
+
+    
+
+    return status_bar
+   
     
 
 if __name__ == "__main__":
     import sys
     total, used, free = get_total_disk_usage()
     print(f"Total: {total}GB Used: {used}GB Free: {free}GB")
-    print(f"Block Status: {block_status(used)}")
-    print(get_format_usage(sys.argv[2], sys.argv[1]))
+    print(f"Block Status: {block_status_bar(total, used)}")

@@ -35,12 +35,16 @@ def screen1():
 
 def screen2():
     print("Drawing Screen 2")
+
+    block_status = block_status_bar(total_disk, used_disk)
+
     # draw disk usage (left side of display)
     total_disk, used_disk, free_disk = get_total_disk_usage()
     draw.text((0, 0), f"▓ .mp3 / 0GB", font=top_font, fill=0, align='left')
     draw.text((0, 32), f"▓ .wav / 0GB", font=top_font, fill=0, align='left')
     draw.text((0, 64), f"▓ .jpeg / 0GB", font=top_font, fill=0, align='left')
-    draw.text((0, 96), f"▓▓▓▓▓▓▓▓▒▒▒▒▒ Used {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
+    draw.text((0, 96), f"{block_status}", font=top_font, fill=0, align='left')
+    draw.text((0, 96), f"Used {used_disk}/{free_disk}GB", font=top_font, fill=255, align='left')
     # draw disk usage (right side of display)
     draw.text((135, 0), f"▓ .r3d / 0GB", font=top_font, fill=0, align='left')
     draw.text((135, 32), f"▓ .cr3 / 0GB", font=top_font, fill=0, align='left')
@@ -51,6 +55,7 @@ def screen2():
 
 print("\n")
 print("Project Storlabs Demonstration Software v0.0.1")
+
 
 print("Initializing...", end=' ')
 try:
