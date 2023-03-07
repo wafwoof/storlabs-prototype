@@ -30,13 +30,12 @@ def block_status_bar(total, used):
     usage = int(used / total * 100)
     print("usage:", usage, "%")
     # for each 10% of usage, add a block
+    print("usage * 0.2:", usage * 0.2)
     while len(status_bar) < usage * 0.2:
         status_bar += block0
 
-    while len(status_bar) < 20:
+    while len(status_bar) < 28:
         status_bar += block3
-
-    
 
     return status_bar
    
