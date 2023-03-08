@@ -48,7 +48,7 @@ def screen2():
     # draw disk usage (right side of display)
     draw.text((135, 0), f"▓ .flp / 0GB", font=top_font, fill=0, align='left')
     draw.text((135, 32), f"▓ .cr3 / 0GB", font=top_font, fill=0, align='left')
-    draw.text((135, 64), f"Total: {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
+    draw.text((135, 64), f"▓ Total: {used_disk}/{free_disk}GB", font=top_font, fill=0, align='left')
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
