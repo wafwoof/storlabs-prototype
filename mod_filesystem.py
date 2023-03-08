@@ -1,5 +1,6 @@
 # Filesystem module for main.py
 import shutil
+from PIL import Image, ImageDraw, ImageFont
 import os
 
 block0 = "█"
@@ -24,21 +25,25 @@ def get_format_usage(directory, format):
     os.system("ls")
 
 def block_status_bar(total, used):
+    # total/used 
     status_bar = ""
-
-    # calculate usage percentage out of 100
-    usage = int(used / total * 100)
-    print("usage:", usage, "%")
-    # for each 10% of usage, add a block
-    print("usage * 0.2:", usage * 0.2)
-    while len(status_bar) < usage * 0.2:
-        status_bar += block0
-
-    while len(status_bar) < 28:
+    status_bar_length = 29
+    # calculate percentage of disk used out of 100
+    percent_used = (used / total) * 100
+    # convert percent_used to equivalent fraction out of 29
+    blocks_used = (percent_used / 100) * status_bar_length
+    # round blocks_used to nearest integer
+    blocks_used = round(blocks_used)
+    # create status bar
+    for i in range(0, blocks_used):
+        status_bar += block1
+    # if status_bar has no characters, add a single block3 anyways
+    if len(status_bar) == 0:
+        status_bar += block1
+    for i in range(blocks_used, status_bar_length):
         status_bar += block3
 
     return status_bar
-   
     
 
 if __name__ == "__main__":
