@@ -11,7 +11,7 @@ from mod_filesystem import *
 pic_dir = 'pic'
 
 def screen1():
-    print("Drawing Screen 1")
+    print("Drawing Screen 1", end=' ')
     # draw disk usage (right side of display)
     total_disk, used_disk, free_disk = get_total_disk_usage()
     draw.text((135, 0), f"▓ .mp3 / 0GB", font=top_font, fill=0, align='left')
@@ -33,8 +33,10 @@ def screen1():
     # clean up qr code file
     os.remove(os.path.join(pic_dir, 'qr.png'))
 
+    print("done")
+
 def screen2():
-    print("Drawing Screen 2")
+    print("Drawing Screen 2", end=' ')
 
     total_disk, used_disk, free_disk = get_total_disk_usage()
     block_status = block_status_bar(total_disk, used_disk)
@@ -55,6 +57,8 @@ def screen2():
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
+
+    print("done")
 
 print("\n")
 print("Project Storlabs Demonstration Software v0.0.2")
