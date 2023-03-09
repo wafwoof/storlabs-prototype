@@ -4,9 +4,11 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 block0 = "█"
+block0 = "■"
 block1 = "▓"
 block2 = "▒"
 block3 = "░"
+block3 = "□"
 
 
 def get_total_disk_usage():
@@ -36,7 +38,7 @@ def block_status_bar(total, used):
     blocks_used = round(blocks_used)
     # create status bar
     for i in range(0, blocks_used):
-        status_bar += block1
+        status_bar += block0
     # if status_bar has no characters, add a single block3 anyways
     if len(status_bar) == 0:
         status_bar += block1

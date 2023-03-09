@@ -7,9 +7,10 @@ except RuntimeError:
     print("Error importing epd2in9bc")
 from PIL import Image, ImageDraw, ImageFont
 import time
-from mod_qrcode import *
+from datetime import datetime, timezone, timedelta
+from mod_qr import *
 from mod_ip import *
-from mod_filesystem import *
+from mod_fs import *
 
 pic_dir = 'pic'
 
@@ -95,6 +96,35 @@ def screen3():
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
     print("done")
 
+def screen4(offset0: int, offset1: int):
+    # Dual Clock
+    print("Drawing Screen 4", end=' ')
+    if offset0 == None:
+        offset0 = -8
+    if offset1 == None:
+        offset1 = -8
+    utc_time_0 = datetime.now(timezone.utc) + timedelta(hours=offset0)
+    utc_time_1 = datetime.now(timezone.utc) + timedelta(hours=offset1)
+
+    # draw left clock
+    draw.text((0, 0), f"Clock 1", font=header_font, fill=0, align='left')
+    draw.text((0, 16), f"{utc_time_0.strftime('%H:%M:%S')}", font=header_font, fill=0, align='left')
+    draw.text((0, 32), f"{utc_time_0.strftime('%d/%m/%Y')}", font=header_font, fill=0, align='left')
+    draw.text((0, 48), f"UTC {offset0}", font=header_font, fill=0, align='left')
+
+    # draw a vertical line between clocks
+    draw.line((135, 0, 135, 128), fill=0, width=1)
+
+    # draw right clock
+    draw.text((135, 0), f"Clock 2", font=header_font, fill=0, align='left')
+    draw.text((135, 16), f"{utc_time_1.strftime('%H:%M:%S')}", font=header_font, fill=0, align='left')
+    draw.text((135, 32), f"{utc_time_1.strftime('%d/%m/%Y')}", font=header_font, fill=0, align='left')
+    draw.text((135, 48), f"UTC {offset1}", font=header_font, fill=0, align='left')
+    
+    # write buffer to display
+    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
+    print("done")
+
 def blank_screen():
     print("Blanking Screen", end=' ')
     draw.rectangle((0, 0, w, h), fill=255)
@@ -139,8 +169,11 @@ finally:
     
 if __name__ == "__main__":
     while True:
+        screen4(-8, 8)
+        time.sleep(13)
+        blank_screen()
         screen3()
-        time.sleep(10)
+        time.sleep(3)
         blank_screen()
         screen2()
         time.sleep(3)
