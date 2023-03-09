@@ -66,6 +66,9 @@ def screen3():
     # File Browser
     print("Drawing Screen 3", end=' ')
     dirname = '/'
+    cursor0 = "▷"
+    cursor1 = "▶"
+
     # ls just one file
     # ommit . and .. directories
     listing = os.popen('ls -a | grep -v "^.$" | grep -v "^..$"').read()
@@ -73,9 +76,9 @@ def screen3():
     listing = listing.replace('\n', ', ')[:-2].split(', ')
 
     # draw browser options
-    draw.text((0, 0), f"File Browser v0.01", font=top_font, fill=0, align='left')
-    draw.text((0, 32), f"{dirname}", font=top_font, fill=0, align='left')
-    draw.text((0, 64), f"{len(listing)} Files", font=top_font, fill=0, align='left')
+    draw.text((3, 0), f"File Browser v0.01", font=header_font, fill=0, align='left')
+    draw.text((3, 16), f"{cursor1}dir: {dirname}", font=info_font, fill=0, align='left')
+    draw.text((3, 32), f"{cursor0}{len(listing)} Files", font=info_font, fill=0, align='left')
 
     # draw a vertical line between file list and file info
     draw.line((135, 0, 135, 128), fill=0, width=1)
@@ -113,6 +116,7 @@ try:
     # define fonts
     top_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 20)
     info_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 14)
+    header_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 16)
 
     # define and draw background
     bw_image_buffer = Image.new(mode='1', size=(w, h), color=255) # b/w image buffer
