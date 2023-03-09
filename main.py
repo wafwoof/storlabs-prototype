@@ -31,11 +31,11 @@ def screen1():
     draw.text((16, 96), ip, font=info_font, fill=0, align='left')
     draw.text((16, 112), "Storlabs ©2023", font=info_font, fill=0, align='left')
 
-    # write buffer to display
-    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
     # clean up qr code file
     os.remove(os.path.join(pic_dir, 'qr.png'))
 
+    # write buffer to display
+    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
     print("done")
 
 def screen2():
@@ -60,7 +60,6 @@ def screen2():
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
-
     print("done")
 
 def screen3():
@@ -73,10 +72,8 @@ def screen3():
 
     draw.text((0, 0), f"{ls_output}", font=top_font, fill=255, align='left')
 
-
-
-
-
+    # write buffer to display
+    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
     print("done")
 
 def blank_screen():
