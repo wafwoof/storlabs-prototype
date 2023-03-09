@@ -70,7 +70,7 @@ def screen3():
     # draw output to display
     print(ls_output)
 
-    draw.text((0, 0), f"{ls_output}", font=top_font, fill=255, align='left')
+    draw.text((0, 0), f"{ls_output}", font=top_font, fill=0, align='left')
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
@@ -79,7 +79,7 @@ def screen3():
 def blank_screen():
     print("Blanking Screen", end=' ')
     draw.rectangle((0, 0, w, h), fill=255)
-    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
+    #epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
     #epd_disp.Clear()
     print("done")
 
