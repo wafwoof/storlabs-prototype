@@ -1,4 +1,4 @@
-# Project Storlabs Demonstration Software v0.0.2
+# Project Storlabs Demonstration Software v0.02
 
 import os
 try:
@@ -72,13 +72,18 @@ def screen3():
     # remove new line characters and split into array
     listing = listing.replace('\n', ', ')[:-2].split(', ')
 
+    # draw browser options
+    draw.text((0, 0), f"File Browser v0.01", font=top_font, fill=0, align='left')
+    draw.text((0, 32), f"{dirname}", font=top_font, fill=0, align='left')
+    draw.text((0, 64), f"{len(listing)} Files", font=top_font, fill=0, align='left')
+
     # draw a vertical line between file list and file info
     draw.line((135, 0, 135, 128), fill=0, width=1)
     
     # loop through files and print to screen
     for i in range(len(listing)):
         print(listing[i])
-        draw.text((136, 0 + i * 12), f"{listing[i]}", font=info_font, fill=0, align='left')
+        draw.text((138, 0 + i * 12), f"{listing[i]}", font=info_font, fill=0, align='left')
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
@@ -91,7 +96,7 @@ def blank_screen():
     print("done")
 
 print("\n")
-print("Project Storlabs Demonstration Software v0.0.2")
+print("Project Storlabs Demonstration Software v0.02")
 
 
 print("Initializing...", end=' ')
