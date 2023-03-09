@@ -65,15 +65,16 @@ def screen2():
 def screen3():
     # File Browser
     print("Drawing Screen 3", end=' ')
+    dirname = '/'
+    # ls just one file
+    listing = os.popen('ls').read()
+    # remove new line characters and split into array
+    listing = listing.replace('\n', ', ')[:-2].split(', ')
     
-    # get number of files in directory
-    num_files = int(os.system("ls -1 | wc -l").read())
-    # convert to int
-    num_files = int(num_files)
-
-
-    # draw output to display
-    draw.text((0, 0), f"{num_files}", font=info_font, fill=0, align='left')
+    # loop through files and print to screen
+    for i in range(len(listing)):
+        print(listing[i])
+        draw.text((0, 0 + (i * 16)), f"{listing[i]}", font=info_font, fill=0, align='left')
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
