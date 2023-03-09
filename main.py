@@ -101,7 +101,7 @@ try:
     epd_disp.init()
 
     # clear display
-    blank_screen()
+    epd_disp.Clear()
 
     # set w/h
     w = epd_disp.height
