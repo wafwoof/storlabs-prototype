@@ -81,7 +81,7 @@ def screen3():
 
 def blank_screen():
     print("Blanking Screen", end=' ')
-    draw.rectangle((0, 0, w, h), fill=0)
+    draw.rectangle((0, 0, w, h), fill=255)
     #epd_disp.Clear()
     print("done")
 
