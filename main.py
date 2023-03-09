@@ -76,7 +76,7 @@ def screen3():
     listing = listing.replace('\n', ', ')[:-2].split(', ')
 
     # draw browser options
-    draw.text((3, 0), f"File Browser v0.01", font=header_font, fill=0, align='left')
+    draw.text((3, 0), f"File Browser", font=header_font, fill=0, align='left')
     draw.text((3, 16), f"{cursor1}dir: {dirname}", font=info_font, fill=0, align='left')
     draw.text((3, 32), f"{cursor0}{len(listing)} Files", font=info_font, fill=0, align='left')
 
