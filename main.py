@@ -104,7 +104,7 @@ try:
     epd_disp.init()
 
     # clear display
-    epd_disp.Clear()
+    #epd_disp.Clear()
 
     # set w/h
     w = epd_disp.height
