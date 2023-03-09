@@ -140,14 +140,14 @@ finally:
 if __name__ == "__main__":
     while True:
         screen3()
-        time.sleep(5)
+        time.sleep(10)
         blank_screen()
         screen2()
-        time.sleep(5)
+        time.sleep(3)
         blank_screen()
-        #screen1()
-        #time.sleep(5)
-        #blank_screen()
+        screen1()
+        time.sleep(3)
+        blank_screen()
 
 
 
