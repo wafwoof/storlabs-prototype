@@ -79,7 +79,6 @@ def screen3():
     for i in range(len(listing)):
         print(listing[i])
         draw.text((136, 0 + i * 12), f"{listing[i]}", font=info_font, fill=0, align='left')
-    
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
