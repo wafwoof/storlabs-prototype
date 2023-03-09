@@ -65,10 +65,15 @@ def screen2():
 def screen3():
     # File Browser
     print("Drawing Screen 3", end=' ')
-    # get output from ls command
-    ls_output = os.popen("ls /home/storlabs/").read()
+    
+    # get number of files in directory
+    num_files = int(os.system("ls -1 | wc -l").read())
+    # convert to int
+    num_files = int(num_files)
+
+
     # draw output to display
-    draw.text((0, 0), f"{ls_output}", font=info_font, fill=0, align='left')
+    draw.text((0, 0), f"{num_files}", font=info_font, fill=0, align='left')
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
@@ -77,8 +82,7 @@ def screen3():
 def blank_screen():
     print("Blanking Screen", end=' ')
     draw.rectangle((0, 0, w, h), fill=255)
-    #epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
-    #epd_disp.Clear()
+    #epd_disp.Clear() # takes too long
     print("done")
 
 print("\n")
