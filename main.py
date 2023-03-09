@@ -82,6 +82,7 @@ def screen3():
 def blank_screen():
     print("Blanking Screen", end=' ')
     draw.rectangle((0, 0, w, h), fill=255)
+    epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
     #epd_disp.Clear()
     print("done")
 
@@ -125,7 +126,7 @@ if __name__ == "__main__":
         time.sleep(5)
         blank_screen()
         screen2()
-        time.sleep(0.5)
+        time.sleep(5)
         blank_screen()
         #screen1()
         #time.sleep(5)
