@@ -96,13 +96,6 @@ print("Project Storlabs Demonstration Software v0.0.2")
 
 print("Initializing...", end=' ')
 try:
-    # init display
-    epd_disp = epd2in9bc.EPD()
-    epd_disp.init()
-
-    # clear display
-    epd_disp.Clear()
-
     # set w/h
     w = epd_disp.height
     h = epd_disp.width
@@ -116,6 +109,13 @@ try:
     bw_image_buffer = Image.new(mode='1', size=(w, h), color=255) # b/w image buffer
     red_image_buffer = Image.new(mode='1', size=(w, h), color=255) # red image buffer
     draw = ImageDraw.Draw(bw_image_buffer) # method to draw on image buffer
+
+    # init display
+    epd_disp = epd2in9bc.EPD()
+    epd_disp.init()
+
+    # clear display
+    blank_screen()
 
 except Exception as error:
     print("Error initializing display,", end=' ')
