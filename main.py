@@ -78,9 +78,9 @@ def screen3():
     # loop through files and print to screen
     for i in range(len(listing)):
         print(listing[i])
-        draw.text((135, 0 + i * 10), f"{listing[i]}", font=info_font, fill=0, align='left')
+        draw.text((135, 0 + i * 12), f"{listing[i]}", font=info_font, fill=0, align='left')
         # draw a horizontal line between each file
-        draw.line((135, 16 + i * 10, 264, 16 + i * 10), fill=0, width=1)
+        draw.line((135, 16 + i * 12, 264, 16 + i * 12), fill=0, width=1)
     
 
     # write buffer to display
