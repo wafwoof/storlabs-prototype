@@ -1,7 +1,10 @@
 # Project Storlabs Demonstration Software v0.0.2
 
 import os
-from waveshare_epd import epd2in9bc
+try:
+    from waveshare_epd import epd2in9bc
+except RuntimeError:
+    print("Error importing epd2in9bc")
 from PIL import Image, ImageDraw, ImageFont
 import time
 from mod_qrcode import *
@@ -60,6 +63,28 @@ def screen2():
 
     print("done")
 
+def screen3():
+    # File Browser
+    print("Drawing Screen 3", end=' ')
+    # get output from ls command
+    ls_output = os.system("ls -l")
+    # draw output to display
+    print(ls_output)
+
+    draw.text((0, 0), f"{ls_output}", font=top_font, fill=0, align='left')
+
+
+
+
+
+    print("done")
+
+def blank_screen():
+    print("Blanking Screen", end=' ')
+    draw.rectangle((0, 0, w, h), fill=255)
+    #epd_disp.Clear()
+    print("done")
+
 print("\n")
 print("Project Storlabs Demonstration Software v0.0.2")
 
@@ -87,20 +112,24 @@ try:
     red_image_buffer = Image.new(mode='1', size=(w, h), color=255) # red image buffer
     draw = ImageDraw.Draw(bw_image_buffer) # method to draw on image buffer
 
-except IOError as error:
-    print(error)
+except Exception as error:
+    print("Error initializing display,", end=' ')
+    print(error, end='. ')
 
 finally:
     print("done")
     
 if __name__ == "__main__":
     while True:
-        screen2()
+        screen3()
         time.sleep(5)
-        draw.rectangle((0, 0, w, h), fill=255)
-        screen1()
-        time.sleep(5)
-        draw.rectangle((0, 0, w, h), fill=255)
+        blank_screen()
+        #screen2()
+        #time.sleep(5)
+        #blank_screen()
+        #screen1()
+        #time.sleep(5)
+        #blank_screen()
 
 
 
