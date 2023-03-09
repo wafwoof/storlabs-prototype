@@ -44,10 +44,13 @@ def block_status_bar(total, used):
         status_bar += block3
 
     return status_bar
+
+def get_directory(directory):
+    # get output from ls command
+    return os.popen(f"ls -l {directory}").read()
     
 
 if __name__ == "__main__":
-    import sys
     total, used, free = get_total_disk_usage()
     print(f"Total: {total}GB Used: {used}GB Free: {free}GB")
     print(f"Block Status: {block_status_bar(total, used)}")

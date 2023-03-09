@@ -67,11 +67,11 @@ def screen3():
     # File Browser
     print("Drawing Screen 3", end=' ')
     # get output from ls command
-    ls_output = os.popen("ls -l /home/storlabs/").read()
+    ls_output = os.popen("ls -l /").read()
     # draw output to display
     print(ls_output)
 
-    draw.text((0, 0), f"{ls_output}", font=top_font, fill=0, align='left')
+    draw.text((0, 0), f"{ls_output}", font=top_font, fill=255, align='left')
 
 
 
@@ -81,7 +81,7 @@ def screen3():
 
 def blank_screen():
     print("Blanking Screen", end=' ')
-    draw.rectangle((0, 0, w, h), fill=255)
+    draw.rectangle((0, 0, w, h), fill=0)
     #epd_disp.Clear()
     print("done")
 
