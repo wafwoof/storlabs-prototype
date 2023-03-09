@@ -74,7 +74,16 @@ def screen3():
     # loop through files and print to screen
     for i in range(len(listing)):
         print(listing[i])
-        draw.text((0, 0 + (i * 16)), f"{listing[i]}", font=info_font, fill=0, align='left')
+
+        # set x/y coordinates
+        if i > 3:
+            x = 135
+            y = 0 + ((i - 4) * 16)
+        else:
+            x = 0
+            y = 0 + (i * 16)
+
+        draw.text((x, y), f"{listing[i]}", font=top_font, fill=0, align='left')
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
