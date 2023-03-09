@@ -71,14 +71,17 @@ def screen3():
 
     # ls just one file
     # ommit . and .. directories
-    listing = os.popen('ls -a | grep -v "^.$" | grep -v "^..$"').read()
+    listing = os.popen(f'ls {dirname} -a | grep -v "^.$" | grep -v "^..$"').read()
     # remove new line characters and split into array
     listing = listing.replace('\n', ', ')[:-2].split(', ')
 
     # draw browser options
     draw.text((3, 0), f"File Browser", font=header_font, fill=0, align='left')
-    draw.text((3, 16), f"{cursor1}dir: {dirname}", font=info_font, fill=0, align='left')
-    draw.text((3, 32), f"{cursor0}{len(listing)} Files", font=info_font, fill=0, align='left')
+    draw.text((3, 16), f"{cursor1}Dir. : {dirname}", font=info_font, fill=0, align='left')
+    draw.text((3, 32), f"{cursor0}{len(listing) } Files listed", font=info_font, fill=0, align='left')
+    draw.text((3, 48), f"{cursor0}Refresh", font=info_font, fill=0, align='left')
+    draw.text((3, 64), f"{cursor0}Quit to Menu", font=info_font, fill=0, align='left')
+
 
     # draw a vertical line between file list and file info
     draw.line((135, 0, 135, 128), fill=0, width=1)
