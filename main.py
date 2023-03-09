@@ -70,6 +70,9 @@ def screen3():
     listing = os.popen('ls -a').read()
     # remove new line characters and split into array
     listing = listing.replace('\n', ', ')[:-2].split(', ')
+
+    # draw a vertical line between file list and file info
+    draw.line((135, 0, 135, 128), fill=0, width=1)
     
     # loop through files and print to screen
     for i in range(len(listing)):
@@ -77,6 +80,7 @@ def screen3():
         draw.text((135, 0 + i * 32), f"{listing[i]}", font=info_font, fill=0, align='left')
         # draw a horizontal line between each file
         draw.line((135, 16 + i * 32, 264, 16 + i * 32), fill=0, width=1)
+    
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
