@@ -79,9 +79,9 @@ def screen3():
     draw.text((3, 0), f"File Browser", font=header_font, fill=0, align='left')
     draw.text((3, 16), f"Viewing: {dirname}", font=header_font, fill=0, align='left')
     draw.text((3, 32), f"{cursor1} Change Directory", font=info_font, fill=0, align='left')
-    draw.text((3, 32), f"{cursor0}{len(listing) } Files listed", font=info_font, fill=0, align='left')
-    draw.text((3, 48), f"{cursor0}Refresh", font=info_font, fill=0, align='left')
-    draw.text((3, 64), f"{cursor0}Quit to Menu", font=info_font, fill=0, align='left')
+    draw.text((3, 48), f"{cursor0}{len(listing) } Files listed", font=info_font, fill=0, align='left')
+    draw.text((3, 64), f"{cursor0}Refresh", font=info_font, fill=0, align='left')
+    draw.text((3, 80), f"{cursor0}Quit to Menu", font=info_font, fill=0, align='left')
 
 
     # draw a vertical line between file list and file info
