@@ -67,7 +67,7 @@ def screen3():
     # File Browser
     print("Drawing Screen 3", end=' ')
     # get output from ls command
-    ls_output = os.system("ls -l /home/storlabs/")
+    ls_output = os.popen("ls -l /home/storlabs/").read()
     # draw output to display
     print(ls_output)
 
