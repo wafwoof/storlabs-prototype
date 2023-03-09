@@ -67,7 +67,7 @@ def screen3():
     # File Browser
     print("Drawing Screen 3", end=' ')
     # get output from ls command
-    ls_output = os.system("ls -l")
+    ls_output = os.system("ls -l /home/storlabs/")
     # draw output to display
     print(ls_output)
 
@@ -122,8 +122,8 @@ finally:
 if __name__ == "__main__":
     while True:
         screen3()
-        time.sleep(5)
-        blank_screen()
+        #time.sleep(5)
+        #blank_screen()
         #screen2()
         #time.sleep(5)
         #blank_screen()
