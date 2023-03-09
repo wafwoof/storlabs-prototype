@@ -68,9 +68,7 @@ def screen3():
     # get output from ls command
     ls_output = os.popen("ls -l /").read()
     # draw output to display
-    print(ls_output)
-
-    draw.text((0, 0), f"{ls_output}", font=top_font, fill=0, align='left')
+    draw.text((0, 0), f"{ls_output}", font=info_font, fill=0, align='left')
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
