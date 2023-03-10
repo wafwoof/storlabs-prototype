@@ -82,8 +82,8 @@ def screen3():
     listing = listing.replace('\n', ', ')[:-2].split(', ')
 
     # draw browser options
-    draw.text((3, 0), f"File Browser", font=header_font, fill=0, align='left')
-    draw.text((3, 16), f"Viewing: {dirname}", font=header_font, fill=0, align='left')
+    draw.text((3, 0), f"File Browser", font=top_font, fill=0, align='left')
+    draw.text((3, 16), f"Viewing: {dirname}", font=top_font, fill=0, align='left')
     draw.text((3, 32), f"{len(listing) } Files", font=header_font, fill=0, align='left')
     draw.text((3, 48), f"{cursor1}Change Directory", font=info_font, fill=0, align='left')
     draw.text((3, 64), f"{cursor0}Refresh", font=info_font, fill=0, align='left')
@@ -123,19 +123,19 @@ def screen4(offset0: int, offset1: int):
         offset1 = f"+{offset1}"
 
     # draw left clock
-    draw.text((3, 0), f"Clock 1", font=header_font, fill=0, align='left')
+    draw.text((3, 0), f"Vancouver", font=header_font, fill=0, align='left')
     draw.text((3, 16), f"{utc_time_0.strftime('%H:%M:%S')}", font=header_font, fill=0, align='left')
     draw.text((3, 32), f"{utc_time_0.strftime('%d/%m/%Y')}", font=header_font, fill=0, align='left')
     draw.text((0, 48), f"UTC {offset0}", font=header_font, fill=0, align='left')
 
     # draw a vertical line between clocks
-    draw.line((135, 0, 135, 128), fill=0, width=1)
+    draw.line((w / 2, 0, w / 2, 128), fill=0, width=1)
 
     # draw right clock
-    draw.text((138, 0), f"Clock 2", font=header_font, fill=0, align='left')
-    draw.text((138, 16), f"{utc_time_1.strftime('%H:%M:%S')}", font=header_font, fill=0, align='left')
-    draw.text((138, 32), f"{utc_time_1.strftime('%d/%m/%Y')}", font=header_font, fill=0, align='left')
-    draw.text((138, 48), f"UTC {offset1}", font=header_font, fill=0, align='left')
+    draw.text((150, 0), f"Taipei", font=header_font, fill=0, align='left')
+    draw.text((150, 16), f"{utc_time_1.strftime('%H:%M:%S')}", font=header_font, fill=0, align='left')
+    draw.text((150, 32), f"{utc_time_1.strftime('%d/%m/%Y')}", font=header_font, fill=0, align='left')
+    draw.text((150, 48), f"UTC {offset1}", font=header_font, fill=0, align='left')
     
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
@@ -215,11 +215,11 @@ if __name__ == "__main__":
     while True:
         screen4(-8, 8)
         blank_screen()
-        screen3()
-        blank_screen()
-        screen2()
-        blank_screen()
-        screen1()
+        #screen3()
+        #blank_screen()
+        #screen2()
+        #blank_screen()
+        #screen1()
         exit()
         #time.sleep(5)
         #blank_screen()
