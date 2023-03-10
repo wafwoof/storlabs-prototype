@@ -13,8 +13,10 @@ from mod_ip import *
 from mod_fs import *
 
 pic_dir = 'pic'
+font = 'arial-unicode.ttf'
 
 def screen1():
+    # Default Screen
     print("Drawing Screen 1", end=' ')
     # draw disk usage (right side of display)
     total_disk, used_disk, free_disk = get_total_disk_usage()
@@ -40,6 +42,7 @@ def screen1():
     print("done.")
 
 def screen2():
+    # Disk Usage Overview
     print("Drawing Screen 2", end=' ')
 
     total_disk, used_disk, free_disk = get_total_disk_usage()
@@ -69,6 +72,8 @@ def screen3():
     dirname = '/'
     cursor0 = "▷"
     cursor1 = "▶"
+    cursor2 = "⇧"
+    cursor3 = "⇩"
 
     # ls just one file
     # ommit . and .. directories
@@ -91,6 +96,12 @@ def screen3():
     # loop through files and print to screen
     for i in range(len(listing)):
         draw.text((138, 0 + i * 12), f"{listing[i]}", font=header_font, fill=0, align='left')
+    
+    # draw upwards facing arrow at top of file list
+    draw.text((w - 8, 0), f"{cursor2}", font=header_font, fill=0, align='left')
+    # draw downwards facing arrow at bottom of file list
+    draw.text((w - 8, 128 - 20), f"{cursor3}", font=header_font, fill=0, align='left')
+
 
     # write buffer to display
     epd_disp.display(epd_disp.getbuffer(bw_image_buffer), None)
@@ -102,7 +113,7 @@ def screen4(offset0: int, offset1: int):
     if offset0 == None:
         offset0 = -8
     if offset1 == None:
-        offset1 = -8
+        offset1 = 8
     utc_time_0 = datetime.now(timezone.utc) + timedelta(hours=offset0)
     utc_time_1 = datetime.now(timezone.utc) + timedelta(hours=offset1)
 
@@ -148,9 +159,9 @@ try:
     print("Width:", w, "Height:", h, end=' ')
 
     # define fonts
-    top_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 20)
-    info_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 14)
-    header_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 16)
+    top_font = ImageFont.truetype(os.path.join(pic_dir, font), 20)
+    info_font = ImageFont.truetype(os.path.join(pic_dir, font), 14)
+    header_font = ImageFont.truetype(os.path.join(pic_dir, font), 16)
 
     # define and draw background
     bw_image_buffer = Image.new(mode='1', size=(w, h), color=255) # b/w image buffer
@@ -181,9 +192,9 @@ except Exception as error:
     print("Width:", w, "Height:", h, end=' ')
 
     # define fonts
-    top_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 20)
-    info_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 14)
-    header_font = ImageFont.truetype(os.path.join(pic_dir, 'unifont.ttf'), 16)
+    top_font = ImageFont.truetype(os.path.join(pic_dir, font), 18)
+    info_font = ImageFont.truetype(os.path.join(pic_dir, font), 14)
+    header_font = ImageFont.truetype(os.path.join(pic_dir, font), 16)
 
     # define and draw background
     bw_image_buffer = Image.new(mode='1', size=(w, h), color=255) # b/w image buffer
@@ -197,13 +208,13 @@ finally:
     
 if __name__ == "__main__":
     while True:
-        screen4(-8, 8)
-        blank_screen()
+        #screen4(-8, 8)
+        #blank_screen()
         screen3()
-        blank_screen()
-        screen2()
-        blank_screen()
-        screen1()
+        #blank_screen()
+        #screen2()
+        #blank_screen()
+        #screen1()
         exit()
         #time.sleep(5)
         #blank_screen()
