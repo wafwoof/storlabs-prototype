@@ -30,7 +30,7 @@ def screen1():
     ip = get_ip()
     create_qr(ip)
     qr = Image.open(os.path.join(pic_dir, 'qr.png'))
-    bw_image_buffer.paste(qr, (16, 0))
+    bw_image_buffer.paste(qr, (16, 2))
     draw.text((16, 96), ip, font=info_font, fill=0, align='left')
     draw.text((16, 112), "Storlabs ©2023", font=info_font, fill=0, align='left')
 
@@ -116,6 +116,11 @@ def screen4(offset0: int, offset1: int):
         offset1 = 8
     utc_time_0 = datetime.now(timezone.utc) + timedelta(hours=offset0)
     utc_time_1 = datetime.now(timezone.utc) + timedelta(hours=offset1)
+    # add + to positive offsets
+    if offset0 > 0:
+        offset0 = f"+{offset0}"
+    if offset1 > 0:
+        offset1 = f"+{offset1}"
 
     # draw left clock
     draw.text((3, 0), f"Clock 1", font=header_font, fill=0, align='left')
@@ -208,13 +213,13 @@ finally:
     
 if __name__ == "__main__":
     while True:
-        #screen4(-8, 8)
-        #blank_screen()
+        screen4(-8, 8)
+        blank_screen()
         screen3()
-        #blank_screen()
-        #screen2()
-        #blank_screen()
-        #screen1()
+        blank_screen()
+        screen2()
+        blank_screen()
+        screen1()
         exit()
         #time.sleep(5)
         #blank_screen()
