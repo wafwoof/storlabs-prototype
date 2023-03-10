@@ -1,0 +1,1 @@
+import os; print("\nLIST\nGIT\nCOMMIT\nHISTORY\n- a script\n"); os.system("git log --pretty=format:'%h - %an, %ar : %s'")
